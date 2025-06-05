@@ -3,40 +3,33 @@
 #include <string>
 
 void testBinaryTree() {
-    // Тестирование для целых чисел
     BinaryTree<int> tree;
     tree.insert(5);
     tree.insert(3);
     tree.insert(7);
 
-    // Тест обходов
     std::stringstream ss;
     tree.preOrder(ss);
     assert(ss.str() == "5 3 7 ");
 
-    // Тест map
     auto doubled = tree.map<int>([](int x) { return x * 2; });
     ss.str("");
     doubled.preOrder(ss);
     assert(ss.str() == "10 6 14 ");
 
-    // Тест where
     auto even = tree.where([](int x) { return x % 2 == 0; });
     assert(even.isEmpty());
 
-    // Тест слияния
     BinaryTree<int> tree2;
     tree2.insert(4);
     auto merged = tree.merge(tree2);
     assert(merged.contains(4));
 
-    // Тест поддерева
     auto subtree = tree.getSubtree(3);
     ss.str("");
     subtree.preOrder(ss);
     assert(ss.str() == "3 ");
 
-    // Тест сериализации
     std::string serialized = tree.serialize();
     BinaryTree<int> deserialized;
     deserialized.deserialize(serialized);
@@ -44,10 +37,8 @@ void testBinaryTree() {
     deserialized.preOrder(ss);
     assert(ss.str() == "5 3 7 ");
 
-    // Тест пути
     assert(tree.findByPath("L") == 3);
 
-    // Тестирование для вещественных чисел
     BinaryTree<double> doubleTree;
     doubleTree.insert(5.5);
     doubleTree.insert(3.3);
@@ -56,7 +47,6 @@ void testBinaryTree() {
     doubleTree.preOrder(ss);
     assert(ss.str() == "5.5 3.3 7.7 ");
 
-    // Тестирование для строк
     BinaryTree<std::string> stringTree;
     stringTree.insert("middle");
     stringTree.insert("left");
