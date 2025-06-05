@@ -10,7 +10,6 @@ class BinaryTree {
 private:
     Node<T>* root;
 
-    // Вспомогательные функции
     void clear(Node<T>* node);
     Node<T>* copy(Node<T>* node) const;
     void NLR(Node<T>* node, std::ostream& os) const;
